@@ -1,5 +1,6 @@
 export const TILES = {
-    DUROTAR: 'durotar'
+    DUROTAR: 'durotar',
+    ELWYNN: 'elwynn'
 }
 
 export const SIZES = {
