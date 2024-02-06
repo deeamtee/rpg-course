@@ -14,7 +14,7 @@ export class Player extends Entity  {
         this.moveSpeed = 50;
         this.setSize(28, 32);
         this.setOffset(10, 16);
-        // this.setScale(0.8);
+        this.setScale(0.8);
 
         anims.create({
             key: 'down',
