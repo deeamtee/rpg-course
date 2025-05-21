@@ -39,10 +39,10 @@ export class ElwynnForest extends Phaser.Scene {
 
         this.player = new Player(this, 400, 250, SPRITES.PLAYER);
         this.boar = new Enemy(this, 600, 400, SPRITES.BOAR.base);
-        // this.boarSecond = new Enemy(this, 200, 300, SPRITES.BOAR.base);
+        this.boarSecond = new Enemy(this, 200, 300, SPRITES.BOAR.base);
         this.boar.setPlayer(this.player);
-        // this.boarSecond.setPlayer(this.player);
-        this.player.setEnemies([this.boar])
+        this.boarSecond.setPlayer(this.player);
+        this.player.setEnemies([this.boar, this.boarSecond]);
         
         this.cameras.main.startFollow(this.player);
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
@@ -53,14 +53,14 @@ export class ElwynnForest extends Phaser.Scene {
         this.physics.add.collider(this.player, wallsLayer);
         wallsLayer.setCollisionByExclusion([-1]);
 
-        // this.killsText = this.add.text(770, 10, `${this.killsCounter}`, { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' })
-        // this.killsText.setScrollFactor(0);
+        this.killsText = this.add.text(770, 10, `${this.killsCounter}`, { fontFamily: 'Arial', fontSize: 16, color: '#ffffff' })
+        this.killsText.setScrollFactor(0);
     }
 
     update(_: number, delta: number): void {
         this.player.update(delta);
         this.boar.update();
-        // this.boarSecond.update();
-        // this.killsText.setText(`${this.killsCounter}`);
+        this.boarSecond.update();
+        this.killsText.setText(`${this.killsCounter}`);
     }
 }

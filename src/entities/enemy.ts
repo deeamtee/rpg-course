@@ -68,6 +68,22 @@ export class Enemy extends Entity {
         })
     }
 
+    takeDamage(damage: number): void {
+        super.takeDamage(damage);
+        
+        if (this.health <= 0) {
+            this.deactivate();
+        }
+    }
+
+    deactivate() {
+        this.stopCycleTween();
+        this.setPosition(this.initialPosition.x, this.initialPosition.y);
+        this.setVisible(false);
+        this.isAlive = false;
+        this.destroy();
+    }
+
     update() {
         // 1. Расчет дистанции до персонажа
         const player = this.player;

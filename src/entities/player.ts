@@ -32,7 +32,7 @@ export class Player extends Entity  {
         this.createAnimation('right', texture.base, 24, 26, anims, animsFrameRate);
         this.createAnimation('up', texture.base, 36, 38, anims, animsFrameRate);
         this.createAnimation('fight', texture.fight, 3, 6, anims, animsFrameRate, 0);
-        // this.drawPlayerHealthBar();
+        this.drawPlayerHealthBar();
         this.on('animationcomplete', () => {
             this.isAttacking = false;
         })
@@ -101,11 +101,10 @@ export class Player extends Entity  {
         this.scene.input.keyboard.on('keydown-SPACE', () => {
             this.isAttacking = true;
             const target = this.findTarget(this.enemies);
-            console.log(target);
             this.play('fight');
             this.setVelocity(0,0);
             this.attack(target)
-            // this.drawEnemyHealthBar(target);
+            this.drawEnemyHealthBar(target);
         })
     }
 
@@ -119,7 +118,7 @@ export class Player extends Entity  {
 
     update(delta: number) {
         const keys = this.scene.input.keyboard.createCursorKeys();
-        // this.drawPlayerHealthBar();
+        this.drawPlayerHealthBar();
 
         if (keys.up.isDown) {
             this.play('up', true);
